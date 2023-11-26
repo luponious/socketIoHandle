@@ -2,10 +2,11 @@
   "name": "websocket---socketio",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js", // If needed, update this line
     "test": "echo \"Error: no hay teste especificado\" && exit 1"
-  },
+    },
   "keywords": [],
   "author": "",
   "license": "ISC",
