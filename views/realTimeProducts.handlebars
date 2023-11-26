@@ -16,7 +16,7 @@
         <label for="productName">Product Name:</label>
         <input type="text" id="productName" name="productName" required>
         
-        <button type="submit">Add Product</button>
+        <button type="submit">Agregar Producto</button>
     </form>
 
     <!-- Product List -->
@@ -37,10 +37,10 @@
 
             const productName = document.getElementById('productName').value;
 
-            // Emit newProduct event to the server
+            // newProduct event al server
             socket.emit('newProduct', { name: productName });
 
-            // Show SweetAlert2 modal when a product is added
+            // Show SweetAlert2 modal prod+
             Swal.fire({
                 title: "Producto agregado!",
                 text: productName,
@@ -56,12 +56,13 @@
             if (event.target.classList.contains('deleteButton')) {
                 const productId = event.target.getAttribute('data-id');
 
-                // Emit the deleteProduct event to the server
+                // Emit deleteProduct event al server
                 socket.emit('deleteProduct', productId);
 
-                // Show SweetAlert2 modal when a product is deleted
+                // Show SweetAlert2 modal cuando deletado
                 Swal.fire({
                     title: "Producto incinerado!",
+                    text: "Nombre: " + productName,
                     text: "ID: " + productId,
                     imageUrl: "https://media.tenor.com/mreXYlgYnUAAAAAC/sponge-bob-delete-memory.gif",
                     imageWidth: 400,
@@ -77,10 +78,10 @@
 
             const productList = document.getElementById('productList');
 
-            // Clear existing list
+            // Limpia lista existente
             productList.innerHTML = '';
 
-            // Populate the list with updated products
+            // Popula la lista con los productos actualizados
             updatedProducts.forEach((product) => {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `${product.name} <button class="deleteButton" data-id="${product.id}">Delete</button>`;
