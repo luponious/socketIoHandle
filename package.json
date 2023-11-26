@@ -1,0 +1,19 @@
+{
+  "name": "websocket---socketio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no hay teste especificado\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "handlebars": "^4.7.8",
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.1"
+  }
+}

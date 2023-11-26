@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!--CDN SWEETALERT-->
+
+    <title>Home</title>
+</head>
+<body>
+    <script>
+        Swal.fire({
+            title: "Bien venido al Home, en donde exprimimos nuestros productos en un list feo, pero con amor.",
+            width: 600,
+            padding: "3em",
+            color: "#716add",
+            background: "#fff url(https://images.unsplash.com/photo-1454117096348-e4abbeba002c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+            backdrop: `
+                rgba(0,0,123,0.4)
+                url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e0a64073-ff7e-49ac-b8af-a305426af106/dfjdkl6-15ac125b-b6ca-4ff6-b0ec-4af2537e4c48.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2UwYTY0MDczLWZmN2UtNDlhYy1iOGFmLWEzMDU0MjZhZjEwNlwvZGZqZGtsNi0xNWFjMTI1Yi1iNmNhLTRmZjYtYjBlYy00YWYyNTM3ZTRjNDguZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.hnj2MgGJHLwGSZ7_kETSeeCbYeSkWVPNuiRP1KVpOwc")
+                left top
+                no-repeat
+            `
+        });
+
+        document.write('<h1>Product List</h1><ul>');
+
+        // Handlebars-like logic directly in the HTML
+        {{#each products}}
+            document.write('<li>{{this.name}}</li>');
+        {{/each}}
+
+        document.write('</ul>');
+    </script>
+</body>
+</html>

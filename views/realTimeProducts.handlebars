@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRDUCTOS IRL</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- CDN SWEETALERT -->
+</head>
+
+<body>
+    <h1>Control de productos:</h1>
+
+    <!-- Product Form -->
+    <form id="productForm">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" required>
+        <button type="submit">Add Product</button>
+    </form>
+
+    <!-- Product List -->
+    <ul id="productList">
+        {{#each products}}
+        <li>{{this.name}} <button class="deleteButton" data-id="{{this.id}}">Delete</button></li>
+        {{/each}}
+    </ul>
+
+    <!-- WebSocket Scrit -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        // Form submission
+        document.getElementById('productForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const productName = document.getElementById('productName').value;
+
+            // Emit newProduct event to the server
+            socket.emit('newProduct', { name: productName });
+
+            // Show SweetAlert2 modal when a product is added
+            Swal.fire({
+                title: "Producto agregado!",
+                text: productName,
+                imageUrl: "https://media.tenor.com/GmSE6QyCQigAAAAC/cute-duck.gif",
+                imageWidth: 400,
+                imageHeight: 200,
+                imageAlt: "Deberia ser un pato..."
+            });
+        });
+
+        // Delete Button Click
+        document.getElementById('productList').addEventListener('click', (event) => {
+            if (event.target.classList.contains('deleteButton')) {
+                const productId = event.target.getAttribute('data-id');
+
+                // Emit the deleteProduct event to the server
+                socket.emit('deleteProduct', productId);
+
+                // Show SweetAlert2 modal when a product is deleted
+                Swal.fire({
+                    title: "Producto incinerado!",
+                    text: "ID: " + productId,
+                    imageUrl: "https://media.tenor.com/mreXYlgYnUAAAAAC/sponge-bob-delete-memory.gif",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: "Deberia ser un pato..."
+                });
+            }
+        });
+
+        // Real-Time Updates
+        socket.on('updateProducts', (updatedProducts) => {
+            console.log('Lista de productos actualizada:', updatedProducts);
+
+            const productList = document.getElementById('productList');
+
+            // Clear existing list
+            productList.innerHTML = '';
+
+            // Populate the list with updated products
+            updatedProducts.forEach((product) => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `${product.name} <button class="deleteButton" data-id="${product.id}">Delete</button>`;
+                productList.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+
+</html>
