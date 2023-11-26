@@ -25,7 +25,7 @@ let products = [
     { id: uuidv4(), name: 'Batata' },
     { id: uuidv4(), name: 'Chips' },
 ];
-
+ 
 // Rutas
 app.get('/', (req, res) => {
     // Renderiza la vista home.handlebars
