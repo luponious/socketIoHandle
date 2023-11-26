@@ -54,7 +54,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('deleteProduct', (productId) => {
-        console.log(`Se borró  ID = ${productId}`);
+        console.log(`Se borró el producto de ID = ${productId}`);
 
         // Verifica si el producto con el ID dado existe antes de intentar eliminarlo
         const existingProductIndex = products.findIndex((product) => product.id === productId);
@@ -64,7 +64,7 @@ io.on('connection', (socket) => {
             products.splice(existingProductIndex, 1);
             io.emit('updateProducts', products);//Emite delete update
         } else {
-            console.log(`Product with ID ${productId} not found.`);
+            console.log(`Producto de ID ${productId} no encontrado.`);
         }
     });
 
