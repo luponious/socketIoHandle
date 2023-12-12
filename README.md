@@ -22,7 +22,7 @@ Para ejecutar este proyecto localmente, siga los pasos a continuación:
 2. Clone este repositorio en su computadora usando el siguiente comando en la terminal:
 
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone [https://github.com/luponious/socketIoHandle.git]
    ```
 
 3. Acceda al directorio del proyecto:
